@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title>Homework Car</title>
+</head>
+<body>
+
+        <div class="container">
+            <div>
+                <h1>Объект, массивы.</h1>
+    
+                <P>    
+                    Объект, массивы, объект array, 
+                    строки, объект string, объект date, 
+                    объект math, введение в ооп.
+                </P>
+            </div>
+        </div>
+        
+        
+        <div class="container">
+            <div class="row main-cards">
+    
+    
+                <!-- Task 1 -->
+                <div class="col-12 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Задание 1</h5>
+                        <p class="card-text">
+                            Создать объект, описывающий автомобиль (производитель,
+                            модель, год выпуска, средняя скорость), и следующие функции
+                            для работы с этим объектом.
+                        </p>
+
+                        <p class="card-text">
+                            1. Функция для вывода на экран информации об автомобиле.
+                        </p>
+                        <button type="button" class="btn btn-success"
+                                onclick="showCarInfo(car)">
+                            Показать информацию
+                        </button>
+
+                        <p class="card-text main-card-text">
+                            2. Функция для подсчета необходимого времени для 
+                            преодоления переданного расстояния со средней скоростью.
+                            Учтите, что через каждые 4 часа дороги водителю 
+                            необходимо делать перерыв на 1 час.
+                        </p>
+                        <button type="button" class="btn btn-success"
+                                onclick="showTravelTime()">
+                            Посчитать время
+                        </button>
+
+                    </div>
+                </div>
+
+
+               
+
+            </div>
+        </div>
+    
+    <script>
+    var car = {
+    manufacturer: "BMW",
+    model: "M5",
+    year: 2000,
+    averageSpeed: 70
+};
+
+function showCarInfo(obj) {
+    var str = "Производитель: " + obj.manufacturer + "\n"
+        + "Модель: " + obj.model + "\n"
+        + "Год выпуска: " + obj.year + " г\n"
+        + "Средняя скорость: " + obj.averageSpeed + " км/ч";
+    alert(str);
+}
+
+function showTravelTime() {
+
+    var length = prompt("Введите расстояние (км)", "");
+
+    var time = computeTravelTime(length)
+
+    alert("Средняя скорость: " + car.averageSpeed + " км/ч\n"
+        + "Расстояние: " + length + " км\n"
+        + "Время для преодоления: " + time + " ч");
+}
+
+function computeTravelTime(length) {
+    var t = Math.round(
+        (length / car.averageSpeed) * 100
+        ) / 100;
+
+    // находим остаток
+    var ost = t % 1;
+    // преобразовуем в минуты
+    ost = ost * 0.6;
+    // время (остаток в минутах)
+    t = Math.floor(t) + ost;
+
+    // учитываем перерыв на 1 час (каждые 4 часа дороги).
+    var breakTime = Math.floor(t / 4);
+    return (t + breakTime).toFixed(2);
+}
+    </script>
+  
+
+</body>
+</html>
